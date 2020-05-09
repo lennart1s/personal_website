@@ -1,0 +1,40 @@
+#designrequest {
+    padding: 40px 15vw 35px /*15vw*/10px;
+
+    display: flex;
+    justify-content: center;
+}
+
+#designrequest > div > p[name="title"] {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    
+    font-size: 34px;
+    font-weight: bolder;
+}
+
+#designrequest > div > p {
+    font-family: $default-font;
+    font-size: 23px;
+    font-weight: 600;
+    color: gray;
+}
+
+#designrequest > button {
+    height: 50px;
+    padding: 0 15px;
+
+    border: none;
+
+    align-self: center;
+
+    font-family: $default-font;
+    font-size: 17px;
+    font-weight: bolder;
+    color: white;
+    background-color: rgb(118, 133, 146);
+}
+
+#designrequest > button:hover {
+    background-color: rgb(87, 92, 97);
+}

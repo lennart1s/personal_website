@@ -129,7 +129,7 @@ body::-webkit-scrollbar {
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
-  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.2), 0 4px 18px -4px rgba(0, 0, 0, 0.19);
+  box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.2), 0 6px 19px -2px rgba(0, 0, 0, 0.19);
 }
 
 #selfpresentation > div > img {
@@ -154,6 +154,42 @@ body::-webkit-scrollbar {
   font-size: 25px;
   line-height: 150%;
   font-family: "Ubuntu-Light", monospace, sans-serif;
+}
+
+#designrequest {
+  padding: 40px 15vw 35px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+#designrequest > div > p[name=title] {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  font-size: 34px;
+  font-weight: bolder;
+}
+
+#designrequest > div > p {
+  font-family: "Ubuntu-Light", monospace, sans-serif;
+  font-size: 23px;
+  font-weight: 600;
+  color: gray;
+}
+
+#designrequest > button {
+  height: 50px;
+  padding: 0 15px;
+  border: none;
+  align-self: center;
+  font-family: "Ubuntu-Light", monospace, sans-serif;
+  font-size: 17px;
+  font-weight: bolder;
+  color: white;
+  background-color: #768592;
+}
+
+#designrequest > button:hover {
+  background-color: #575c61;
 }
 
 /*# sourceMappingURL=index.css.map */
