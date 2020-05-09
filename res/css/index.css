@@ -1,5 +1,17 @@
+@font-face {
+  font-family: "Anton-Regular";
+  src: url("/res/fonts/Anton-Regular.ttf");
+}
+@font-face {
+  font-family: "Ubuntu-Light";
+  src: url("/res/fonts/Ubuntu-Light.ttf");
+}
 html {
   scroll-behavior: smooth;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 #intro {
@@ -11,11 +23,13 @@ html {
   background-attachment: fixed;
   display: grid;
   grid-template-columns: 10% 90%;
-  grid-template-rows: 35% 10% 14% 30% 10%;
+  grid-template-rows: 35% 10% 14% 35% 5%;
 }
 
 #title {
   text-align: center;
+  font-family: "Ubuntu-Light", monospace, sans-serif;
+  font-weight: bold;
   font-size: 60px;
   letter-spacing: 8;
   color: white;
@@ -29,7 +43,6 @@ html {
   grid-row: 3;
   grid-column: 1;
   display: flexbox;
-  flex-direction: column;
   justify-items: flex-end;
 }
 
@@ -37,6 +50,7 @@ html {
   width: 30px;
   height: 30px;
   padding: 6px;
+  margin-bottom: 3px;
   font-size: 30px;
   color: black;
   mix-blend-mode: screen;
@@ -51,34 +65,61 @@ html {
   background: var(--hover-color, #c8c8c8);
   color: var(--icon-color, transparent);
   mix-blend-mode: normal;
+  margin-bottom: 20px;
 }
 
 #socialmedia:hover > a:not(:hover) {
   transform: translate(0px, -10px);
 }
 
-#socialmedia > a:hover + a {
-  margin-top: 20px;
-}
-
 .fa-youtube {
   --hover-color:linear-gradient(to bottom right, #ff0000 0%, #8f0000 100%);
-  --icon-color:rgb(255, 255, 255);
+  --icon-color:white;
 }
 
 .fa-twitter {
   --hover-color:linear-gradient(to bottom right, #1da1f2 0%, #196da1 100%);
-  --icon-color:rgb(255, 255, 255);
+  --icon-color:white;
 }
 
 .fa-github {
   --hover-color:linear-gradient(to bottom right, #6787a7 0%, #3e464e 100%);
-  --icon-color:rgb(255, 255, 255);
+  --icon-color:white;
 }
 
 .fa-instagram {
   --hover-color: linear-gradient(to bottom right, #ffff00 -9%, #ff33cc 100%);
-  --icon-color:rgb(255, 255, 255);
+  --icon-color:white;
+}
+
+#pointer {
+  width: 70px;
+  margin: 0 auto 0 auto;
+  grid-row: 5;
+  grid-column-end: span 2;
+}
+
+@media only screen and (max-width: 800px) {
+  #socialmedia {
+    max-width: 70%;
+    margin-left: calc(50% - 180px / 2);
+    grid-row: 5;
+    grid-column-end: span 2;
+  }
+
+  #socialmedia > a:hover {
+    margin-right: 20px;
+    margin-bottom: 0px;
+  }
+
+  #socialmedia:hover > a:not(:hover) {
+    transform: translate(-10px, 0px);
+  }
+
+  #pointer {
+    visibility: hidden;
+    grid-column: 1;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */
