@@ -9,7 +9,9 @@ import (
 
 func main() {
 	r := mux.NewRouter()
+
 	r.HandleFunc("/", indexHandler)
+	r.PathPrefix("/res/").Handler(http.FileServer(http.Dir("./")))
 
 	http.Handle("/", r)
 	err := http.ListenAndServe(":8080", nil)
