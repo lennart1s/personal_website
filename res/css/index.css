@@ -1,0 +1,48 @@
+html {
+  scroll-behavior: smooth;
+}
+
+#intro {
+  height: 100%;
+  background-image: url("../images/titleimg.jpg");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 35% 10% 14% 30% 10%;
+}
+
+#title {
+  text-align: center;
+  font-size: 60px;
+  letter-spacing: 8;
+  color: white;
+  grid-column-end: span 2;
+  grid-row: 2;
+}
+
+#socialmedia {
+  max-width: 50px;
+  margin-left: 5px;
+  grid-row: 3;
+  grid-column: 1;
+  display: flexbox;
+  flex-direction: column;
+  justify-items: flex-end;
+}
+
+#socialmedia > a {
+  width: 30px;
+  height: 30px;
+  padding: 6px;
+  font-size: 30px;
+  color: black;
+  mix-blend-mode: screen;
+  text-align: center;
+  border-radius: 50%;
+  background: white;
+}
+
+/*# sourceMappingURL=index.css.map */
