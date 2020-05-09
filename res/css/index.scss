@@ -29,8 +29,8 @@ html {
 }
 
 #socialmedia {
-    max-width: 50px;
-    margin-left: 5px;
+    max-width: 30px;
+    margin-left: 13px;
     
     grid-row: 3;
     grid-column: 1;
@@ -38,7 +38,6 @@ html {
     display: flexbox;
     flex-direction: column;
     justify-items: flex-end;
-    
 }
 
 #socialmedia > a {
@@ -53,5 +52,27 @@ html {
 
     border-radius: 50%;
     background: white;
-    
+
+    transition: 0.15s;
 }
+
+#socialmedia > a:hover {
+    transform: scale(1.5);
+
+    background: var(--hover-color, rgb(200, 200, 200));
+    color: var(--icon-color, transparent);
+    mix-blend-mode: normal;
+}  
+
+#socialmedia:hover > a:not(:hover) {
+    transform: translate(0px, -10px);
+}
+
+#socialmedia > a:hover + a {
+    margin-top: 20px;
+}
+
+.fa-youtube {--hover-color:linear-gradient(to bottom right, #ff0000 0%, #8f0000 100%);--icon-color:rgb(255, 255, 255);}
+.fa-twitter {--hover-color:linear-gradient(to bottom right, #1da1f2 0%, #196da1 100%);--icon-color:rgb(255, 255, 255);}
+.fa-github {--hover-color:linear-gradient(to bottom right, #6787a7 0%, #3e464e 100%);--icon-color:rgb(255, 255, 255);}
+.fa-instagram {--hover-color: linear-gradient(to bottom right, #ffff00 -9%, #ff33cc 100%);--icon-color:rgb(255, 255, 255);}
