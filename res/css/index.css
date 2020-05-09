@@ -121,5 +121,39 @@ body::-webkit-scrollbar {
     grid-column: 1;
   }
 }
+#selfpresentation {
+  width: 100%;
+  margin: 0;
+  padding: 4vh 4vw 1vh 2vw;
+  background: #777e85;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.2), 0 4px 18px -4px rgba(0, 0, 0, 0.19);
+}
+
+#selfpresentation > div > img {
+  width: 250px;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#selfpresentation > div > p {
+  margin-top: 15px;
+  color: white;
+  font-size: 35px;
+  font-family: "Ubuntu-Light", monospace, sans-serif;
+  line-height: 180%;
+  text-align: center;
+}
+
+#selfpresentation > p {
+  max-width: 750px;
+  margin: 5vw 15px 0 15px;
+  color: white;
+  font-size: 25px;
+  line-height: 150%;
+  font-family: "Ubuntu-Light", monospace, sans-serif;
+}
 
 /*# sourceMappingURL=index.css.map */
