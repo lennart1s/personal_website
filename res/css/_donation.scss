@@ -4,6 +4,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
+    background-color: white;
 }
 
 #donation > div > p {
@@ -19,6 +21,10 @@
     margin-top: 20px;
 
     align-self: flex-end;
+}
+
+#donate:focus {
+    outline: 0;
 }
 
 #donate:hover {

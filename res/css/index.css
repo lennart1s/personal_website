@@ -23,6 +23,20 @@ body::-webkit-scrollbar {
   user-select: none;
 }
 
+#cap {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  box-shadow: 0px 3px 6px 3px rgba(0, 0, 0, 0.2), 0px 3px 14px 4px rgba(0, 0, 0, 0.19);
+}
+
+@media only screen and (max-width: 1200px) {
+  #cap {
+    width: 100%;
+    background-color: green;
+  }
+}
 #intro {
   height: 100%;
   background-image: url("../images/titleimg.jpg");
@@ -133,12 +147,11 @@ body::-webkit-scrollbar {
 #selfpresentation {
   width: 100%;
   margin: 0;
-  padding: 4vh 4vw 1vh 2vw;
+  padding: 4vh 1vw 1vh 1vw;
   background: #777e85;
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
-  box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.2), 0 6px 19px -2px rgba(0, 0, 0, 0.19);
 }
 
 #selfpresentation > div > img {
@@ -157,6 +170,7 @@ body::-webkit-scrollbar {
 }
 
 #selfpresentation > p {
+  width: 80%;
   max-width: 750px;
   margin: 5vw 15px 0 15px;
   color: white;
@@ -166,9 +180,8 @@ body::-webkit-scrollbar {
 }
 
 #designrequest {
-  padding: 40px 15vw 35px 10px;
-  display: flex;
-  justify-content: center;
+  padding: 40px 10vw 35px 10vw;
+  background-color: white;
 }
 
 #designrequest > div > p[name=title] {
@@ -188,8 +201,10 @@ body::-webkit-scrollbar {
 #designrequest > button {
   height: 50px;
   padding: 0 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   border: none;
-  align-self: center;
   font-family: "Ubuntu-Light", monospace, sans-serif;
   font-size: 17px;
   font-weight: bolder;
@@ -205,7 +220,6 @@ body::-webkit-scrollbar {
   padding-top: 20px;
   padding-bottom: 50px;
   background: #a3acb4;
-  box-shadow: 0 0px 6px 3px rgba(0, 0, 0, 0.2), 0 0px 14px 4px rgba(0, 0, 0, 0.19);
 }
 
 #github > div {
@@ -237,7 +251,6 @@ body::-webkit-scrollbar {
 #repolist > div {
   width: 30%;
   min-width: 300px;
-  height: 150px;
   margin: 3vw 3vw 1vh 3vw;
   padding: 25px 15px 15px 15px;
   background-color: white;
@@ -245,7 +258,7 @@ body::-webkit-scrollbar {
   border-radius: 4px;
   display: grid;
   grid-template-columns: 70% auto;
-  grid-template-rows: 20% auto 20%;
+  grid-template-rows: 20% auto 30px;
 }
 
 #repolist a {
@@ -275,7 +288,6 @@ body::-webkit-scrollbar {
 }
 
 #repolist p[name=description] {
-  max-height: 60%;
   margin-bottom: 0;
   grid-column: 1;
   grid-row: 2;
@@ -297,6 +309,7 @@ body::-webkit-scrollbar {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: white;
 }
 
 #donation > div > p {
@@ -309,6 +322,10 @@ body::-webkit-scrollbar {
   width: 200px;
   margin-top: 20px;
   align-self: flex-end;
+}
+
+#donate:focus {
+  outline: 0;
 }
 
 #donate:hover {
