@@ -1,0 +1,39 @@
+#donation {
+    padding: 30px 15px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#donation > div > p {
+    min-width: 300px;
+
+    font-family: $default-font;
+    font-size: 25px;
+}
+
+#donate {
+    width: 200px;
+
+    margin-top: 20px;
+
+    align-self: flex-end;
+}
+
+#donate:hover {
+    animation-name: scale;
+    animation-duration: 0.8s;
+    animation-iteration-count: 3;
+}
+
+@keyframes scale {
+    50% {transform: scale(1.03);}
+} 
+
+@media only screen and (max-width: 800px) {
+    #donation > div[name="buffer"] {
+        visibility: hidden;
+        display: none;
+    }
+}

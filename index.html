@@ -13,7 +13,7 @@
 
 <body style="margin:0">
 
-    <div id="intro">
+    <div id="intro" class="unselectable">
 
         <div id="title">
             <p>Lennart Sandbothe</p>
@@ -33,7 +33,7 @@
     <div id="selfpresentation">
 
         <div>
-            <img src="/res/images/sandbothe_bild.jpg">
+            <img src="/res/images/sandbothe_bild.jpg" class="unselectable">
             <p>Hi,<br>Ich bin Lennart</p>
         </div>
 
@@ -53,37 +53,59 @@
         
         <div>
             <p name="title">Webdesign Auftrag?</p>
-            <p>Sie brauchen ein Website-Design inkl. Hosting für Sie oder Ihre Firma?</p>
+            <p>Du brauchst ein Website-Design inkl. Hosting für dich oder deine Firma?</p>
         </div>
 
         <div name="buffer" style="width: 8vw;"></div>
 
-        <button style=>Anfrage erstellen</button>
+        <button class="unselectable">Anfrage erstellen</button>
 
     </div>
 
     <div id="github">
-        <div>
+        <div class="unselectable">
             <p name="icon" class="fa fa-github"></p>
             <p>GitHub Repositories</p>
         </div>
 
         <div id="repolist">
-            <!--{{range .}}-->
+            {{range .}}
                 <div>
                     <a name="reponame" href="{{.URL}}" target="_blank">{{.Name}}</a>
                     <a name="ownername" href="{{.Owner.URL}}" target="_blank">{{.Owner.Name}}</a>
 
-                    <p>{{.Description}}</p>
+                    <p name="description">{{.Description}}</p>
 
-                    <p>{{.Language}}</p>
+                    <p name="language">{{.Language}}</p>
                 </div>
 
-            <!--{{end}}-->
+            {{end}}
         </div>
     </div>
 
-    <div style="height: 100%"></div>
+    <div id="donation">
+
+        <div>
+            <p style="font-weight: bold;">Du willst Spenden?</p>
+            <p> Jetzt einfach und sicher über PayPal!</p>
+        </div>
+
+        <div name="buffer" style="width:10vw"></div>
+
+        <form class="unselectable" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            <input type="hidden" name="hosted_button_id" value="F35RPX2RWQKAG" />
+            <input id="donate" type="image" src="https://sandbothe.dev/res/images/paypalDonate.png" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button"/>
+            <img alt="" border="0" src="https://www.paypal.com/en_DE/i/scr/pixel.gif" width="1" height="1" />
+        </form>
+            
+    </div>
+
+    <div id="footer" class="ngc" style="background-color:rgb(70,70,70);padding-top:20px;padding-bottom:20px;
+        box-shadow: 0 0px 6px 3px rgba(0,0,0,0.2),0 0px 14px 4px rgba(0,0,0,0.19);">
+        <p style="padding-top:20px ;margin:0px;text-align: center;color:rgb(230, 230, 230);"
+        >Kontakt, Impressum etc</p>
+    </div>
 
 </body>
 
