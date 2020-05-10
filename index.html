@@ -62,9 +62,28 @@
 
     </div>
 
-    <div id="githublist" style="background-color: darkgray; height: 400%">
+    <div id="github">
+        <div>
+            <p name="icon" class="fa fa-github"></p>
+            <p>GitHub Repositories</p>
+        </div>
 
+        <div id="repolist">
+            <!--{{range .}}-->
+                <div>
+                    <a name="reponame" href="{{.URL}}" target="_blank">{{.Name}}</a>
+                    <a name="ownername" href="{{.Owner.URL}}" target="_blank">{{.Owner.Name}}</a>
+
+                    <p>{{.Description}}</p>
+
+                    <p>{{.Language}}</p>
+                </div>
+
+            <!--{{end}}-->
+        </div>
     </div>
+
+    <div style="height: 100%"></div>
 
 </body>
 
