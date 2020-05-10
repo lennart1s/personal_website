@@ -25,8 +25,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("./index.html")
 	check(err)
 
-	//data := githubapi.GetLatestGithubRepos("lennart1s", 4)
-
 	tmpl.Execute(w, data)
 }
 
