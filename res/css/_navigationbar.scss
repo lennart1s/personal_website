@@ -15,7 +15,7 @@
 
 #navigationbar > a {
     height: fit-content;
-    margin: 0 5vw;
+    margin: 0 4vw;
     
     font-family: $default-font;
     font-size: 20px;
@@ -28,10 +28,6 @@
     color: white;
 
     font-weight: 600;
-}
-
-#navigationbar:not(.fixedBar) > p {
-    display: none;
 }
 
 #navigationbar > a:hover {
@@ -54,16 +50,6 @@
 .fixedBar > a {
     color: black;
     font-weight: 500;
-}
-
-.fixedBar > p {
-    position: absolute;
-    left: 20px;
-    transform:translate(0, -60px);
-
-    color: rgb(94, 34, 86);
-    font-family: $heading-font;
-    font-size: 33px;
 }
 
 @keyframes transition {

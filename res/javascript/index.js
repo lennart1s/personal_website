@@ -3,7 +3,8 @@ function scrollByID(id) {
 }
 
 function scrollToBodyChild(i) {
-    document.body.children[i].scrollIntoView();
+    //document.body.children[i].scrollIntoView();
+    window.scroll(0, window.innerHeight-70);
 }
 
 isFixed = false;

@@ -1,0 +1,49 @@
+<html style="min-height: 100vh">
+
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/res/css/contact.css">
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        
+</head>
+
+<body style="margin: 0;height: 100%; display: flex; flex-direction: column;">
+
+    <div id="bg-image"></div>
+
+    {{template "navigationbar.html" "fixedBar"}}
+
+    <div name="buffer" style="height: 15vh"></div>
+
+    <form action="/contact/submitrequest" method="POST">
+    
+        <p id="title">Schick mir eine Nachricht:</p>
+
+        <label for="firstname" style="grid-column: 1; grid-row: 2;">Vorname:</label>
+        <input type="text" id="firstname" name="firstname" style="grid-column: 1; grid-row: 3;" required>
+        
+        <label for="lastname" style="grid-column: 2; grid-row: 2;">Nachname:</label>
+        <input type="text" id="lastname" name="lastname" style="grid-column: 2; grid-row: 3;" required>
+
+        <label for="email" style="grid-column: 1; grid-row: 4;">E-Mail:</label>
+        <input type="email" id="email" name="email" required style="grid-column: 1 / 3; grid-row: 5;">
+
+        <label for="message" style="grid-column: 1 / 3; grid-row: 6;">Nachricht:</label>
+        <textarea id="message" name="message" style="grid-column: 1 / 3; grid-row: 7; resize: none; font-size: 1.15rem;padding: 5px;line-height:140%;"></textarea>
+
+        <div class="g-recaptcha" data-sitekey="6Lc8Q_YUAAAAAPEPPne9ZOzZo1tOdbixc0KfMvXq" style="grid-column: 1 / 3; grid-row: 8;"></div>
+
+        <input type="submit" id="submit" value="Abschicken" style="grid-column: 1; grid-row: 9;">
+
+
+    </form>
+
+    {{template "footer.html"}}
+
+</body>
+
+
+</html>

@@ -15,18 +15,12 @@
 
     <div id="intro" class="unselectable" style="box-shadow: 0px 3px 6px 3px rgba(0,0,0,0.2),0px 3px 14px 4px rgba(0,0,0,0.19);">
 
+        {{template "navigationbar.html"}}
+
         <div id="title">
             <p>Lennart Sandbothe</p>
         </div>
 
-        <div id="navigationbar">
-            <p onclick="document.body.scrollTop = 0;">sandbothe.dev</p>
-            
-            <a>Projekte</a>
-            <a href="#donate">Spenden</a>
-            <div name="buffer" style="width: 23vw;"></div>
-            <a>Kontakt</a>
-        </div>
 
         <div id="socialmedia">
             <a class="fa fa-youtube"></a>
@@ -48,7 +42,7 @@
             <p>Hi,<br>Ich bin Lennart</p>
         </div>
 
-        <div name="buffer" style="width: 7vw;"></div>
+        <!--<div name="buffer" style="width: 7vw;"></div>-->
 
         <p>
             Ein Schüler, der sich nebenbei das Programmieren,
@@ -67,7 +61,7 @@
             <p>Du brauchst ein Website-Design inkl. Hosting für dich oder deine Firma?</p>
         </div>
 
-        <button class="unselectable">Anfrage erstellen</button>
+        <button class="unselectable" onclick="window.location='/contact/'">Anfrage erstellen</button>
 
     </div>
 
@@ -113,12 +107,8 @@
 
     </div>
 
-    <div id="footer" class="ngc" style="background-color:rgb(70,70,70);padding-top:20px;padding-bottom:20px;
-        box-shadow: 0 0px 6px 3px rgba(0,0,0,0.2),0 0px 14px 4px rgba(0,0,0,0.19);">
-        <p style="padding-top:20px ;margin:0px;text-align: center;color:rgb(230, 230, 230);"
-        >Kontakt, Impressum etc</p>
-    </div>
-
+    {{template "footer.html"}}
+    
 </body>
 
 </html>

@@ -194,7 +194,7 @@ body::-webkit-scrollbar {
 
 #navigationbar > a {
   height: fit-content;
-  margin: 0 5vw;
+  margin: 0 4vw;
   font-family: "Ubuntu-Light", monospace, sans-serif;
   font-size: 20px;
   text-decoration: none;
@@ -204,10 +204,6 @@ body::-webkit-scrollbar {
 #navigationbar:not(.fixedBar) > a {
   color: white;
   font-weight: 600;
-}
-
-#navigationbar:not(.fixedBar) > p {
-  display: none;
 }
 
 #navigationbar > a:hover {
@@ -227,15 +223,6 @@ body::-webkit-scrollbar {
 .fixedBar > a {
   color: black;
   font-weight: 500;
-}
-
-.fixedBar > p {
-  position: absolute;
-  left: 20px;
-  transform: translate(0, -60px);
-  color: #5e2256;
-  font-family: "Anton-Regular", monospace, sans-serif;
-  font-size: 33px;
 }
 
 @keyframes transition {
@@ -280,7 +267,7 @@ body::-webkit-scrollbar {
 #selfpresentation > p {
   width: 80%;
   max-width: 750px;
-  margin: 5vw 15px 0 15px;
+  margin: 5vw 15px 0 4vw;
   color: white;
   font-size: 25px;
   line-height: 150%;
@@ -303,7 +290,7 @@ body::-webkit-scrollbar {
   font-family: "Ubuntu-Light", monospace, sans-serif;
   font-size: 23px;
   font-weight: 600;
-  color: gray;
+  color: #4d4d4d;
 }
 
 #designrequest > button {
@@ -444,7 +431,7 @@ body::-webkit-scrollbar {
 
 @keyframes scale {
   50% {
-    transform: scale(1.03);
+    transform: scale(1.04);
   }
 }
 @media only screen and (max-width: 800px) {
