@@ -10,6 +10,8 @@ import (
 	"strings"
 
 	"github.com/gorilla/mux"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 var router *mux.Router
