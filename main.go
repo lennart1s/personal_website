@@ -17,7 +17,7 @@ import (
 
 var router *mux.Router
 var database *sql.DB
-var sqlLogin = "phpmyadmin:argumentkillanalysis@tcp(127.0.0.1:3306)/sandbothe_dev"
+var sqlLogin = ""
 
 var data = githubapi.GetLatestGithubRepos("lennart1s", 4)
 
