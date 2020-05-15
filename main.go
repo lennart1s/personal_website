@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"personal_website/githubapi"
 	"strings"
+	"log"
 
 	"github.com/gorilla/mux"
 
@@ -16,7 +17,7 @@ import (
 
 var router *mux.Router
 var database *sql.DB
-var sqlLogin = ""
+var sqlLogin = "phpmyadmin:argumentkillanalysis@tcp(127.0.0.1:3306)/sandbothe_dev"
 
 var data = githubapi.GetLatestGithubRepos("lennart1s", 4)
 
@@ -38,8 +39,8 @@ func main() {
 	router.PathPrefix("/res/").Handler(http.FileServer(http.Dir("./")))
 
 	http.Handle("/", router)
-	err = http.ListenAndServe(":8080", nil)
-	//err = http.ListenAndServeTLS(":8004", "/etc/ssl/certs/sandbothe.dev.cer", "/etc/ssl/private/sandbothe.dev.key", nil)
+	//err = http.ListenAndServe(":8080", nil)
+	err = http.ListenAndServeTLS(":8004", "/etc/ssl/certs/sandbothe.dev.cer", "/etc/ssl/private/sandbothe.dev.key", nil)
 	check(err)
 }
 
@@ -66,6 +67,8 @@ func submitRequest(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
 		http.Redirect(w, r, "/contact/submit_error.html", http.StatusSeeOther)
+		log.Print(err)
+		return
 	}
 
 	firstname := r.FormValue("firstname")
@@ -74,11 +77,14 @@ func submitRequest(w http.ResponseWriter, r *http.Request) {
 	msg := r.FormValue("message")
 	var grec GrecResponse
 	json.Unmarshal([]byte(r.FormValue("g-recaptcha-response")), &grec)
+	println(grec.Success)
 
-	_, err = database.Exec("INSERT INTO `contact_submissions`(`lastname`, `firstname`, `email`, `message`, `recaptcha_success`) VALUES ($1, $2, $3, $4)",
+	_, err = database.Exec("INSERT INTO `contact_submissions`(`lastname`, `firstname`, `email`, `message`, `recaptcha_success`) VALUES (?, ?, ?, ?, ?)",
 		lastname, firstname, email, msg, grec.Success)
 	if err != nil {
 		http.Redirect(w, r, "/contact/submit_error.html", http.StatusSeeOther)
+		log.Print(err)
+		return
 	}
 
 	http.Redirect(w, r, "/contact/submit_success.html", http.StatusSeeOther)
