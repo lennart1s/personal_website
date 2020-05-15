@@ -1,25 +1,27 @@
 package main
 
 import (
+	"database/sql"
 	"encoding/json"
 	"html/template"
 	"io/ioutil"
 	"net/http"
-	"os"
 	"personal_website/githubapi"
-	"strconv"
 	"strings"
-	"time"
 
 	"github.com/gorilla/mux"
 )
 
 var router *mux.Router
+var database *sql.DB
+var sqlLogin = ""
 
 var data = githubapi.GetLatestGithubRepos("lennart1s", 4)
 
 func main() {
-	loadWithDependencies("./index.html")
+	var err error
+	database, err = sql.Open("mysql", sqlLogin)
+	check(err)
 
 	router = mux.NewRouter()
 
@@ -29,11 +31,13 @@ func main() {
 	router.HandleFunc("/contact/submitrequest", submitRequest).Methods("POST")
 	router.HandleFunc("/contact/{response}", contactResponseHandler)
 
+	router.HandleFunc("/impressum", impressumHandler)
+
 	router.PathPrefix("/res/").Handler(http.FileServer(http.Dir("./")))
 
 	http.Handle("/", router)
-	//err := http.ListenAndServe(":8080", nil)
-	err := http.ListenAndServeTLS(":8004", "/etc/ssl/certs/sandbothe.dev.cer", "/etc/ssl/private/sandbothe.dev.key", nil)
+	err = http.ListenAndServe(":8080", nil)
+	//err = http.ListenAndServeTLS(":8004", "/etc/ssl/certs/sandbothe.dev.cer", "/etc/ssl/private/sandbothe.dev.key", nil)
 	check(err)
 }
 
@@ -58,7 +62,9 @@ func contactResponseHandler(w http.ResponseWriter, r *http.Request) {
 
 func submitRequest(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
-	check(err)
+	if err != nil {
+		http.Redirect(w, r, "/contact/submit_error.html", http.StatusSeeOther)
+	}
 
 	firstname := r.FormValue("firstname")
 	lastname := r.FormValue("lastname")
@@ -67,16 +73,19 @@ func submitRequest(w http.ResponseWriter, r *http.Request) {
 	var grec GrecResponse
 	json.Unmarshal([]byte(r.FormValue("g-recaptcha-response")), &grec)
 
-	f, err := os.OpenFile("./contactsubmission.txt", os.O_APPEND, 0600)
-	check(err)
-	defer f.Close()
-	f.WriteString(time.Now().String() + "\n")
-	f.WriteString("New Contact-Form-Submission: (" + strconv.FormatBool(grec.Success) + ")\n")
-	f.WriteString(lastname + ", " + firstname + "\n")
-	f.WriteString(email + "\n")
-	f.WriteString(msg + "\n\n")
+	_, err = database.Exec("INSERT INTO `contact_submissions`(`lastname`, `firstname`, `email`, `message`, `recaptcha_success`) VALUES ($1, $2, $3, $4)",
+		lastname, firstname, email, msg, grec.Success)
+	if err != nil {
+		http.Redirect(w, r, "/contact/submit_error.html", http.StatusSeeOther)
+	}
 
 	http.Redirect(w, r, "/contact/submit_success.html", http.StatusSeeOther)
+}
+
+func impressumHandler(w http.ResponseWriter, r *http.Request) {
+	tmpl := loadWithDependencies("./impressum/index.html")
+
+	tmpl.Execute(w, nil)
 }
 
 //////////////////////////////////////

@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="../res/css/contact.css">
+
+    <script src="/res/javascript/index.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        
+</head>
+
+<body style="margin: 0; display: flex; flex-direction: column;">
+
+    <div id="bg-image"></div>
+
+    {{template "navigationbar.html" "fixedBar"}}
+
+    <div name="buffer" style="height: 30vh"></div>
+
+    <div style="margin-left: auto; margin-right: auto;padding: 30px 40px;background-color: rgba(83, 83, 83, 0.541);">
+        <h1 class="response" style="margin-bottom: 35px">Impressum</h1>
+        <h2 class="response" style="font-size: 1.5rem;text-align: left;">Sandbothe, Lennart</h2>
+        <h2 class="response" style="font-size: 1.5rem;text-align: left;">Richardstraße 59</h2>
+        <h2 class="response" style="font-size: 1.5rem;text-align: left;">59071 Hamm</h2>
+        <h2 class="response" style="font-size: 1.5rem;text-align: left;">Deuschland</h2>
+        <h2 class="response" style="font-size: 1.5rem;text-align: left; margin-top: 40px">sandbothe.lennart@gmail.com</h2>
+    </div>
+
+    {{template "footer.html"}}
+
+</body>
+
+</html>
