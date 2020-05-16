@@ -3,12 +3,13 @@ package main
 import (
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"html/template"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"personal_website/githubapi"
 	"strings"
-	"log"
 
 	"github.com/gorilla/mux"
 
@@ -23,7 +24,7 @@ var data = githubapi.GetLatestGithubRepos("lennart1s", 4)
 
 func main() {
 	var err error
-	database, err = sql.Open("mysql", sqlLogin)
+	//database, err = sql.Open("mysql", sqlLogin)
 	check(err)
 
 	router = mux.NewRouter()
@@ -71,21 +72,21 @@ func submitRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	firstname := r.FormValue("firstname")
-	lastname := r.FormValue("lastname")
-	email := r.FormValue("email")
-	msg := r.FormValue("message")
+	//firstname := r.FormValue("firstname")
+	//lastname := r.FormValue("lastname")
+	//email := r.FormValue("email")
+	//msg := r.FormValue("message")
 	var grec GrecResponse
 	json.Unmarshal([]byte(r.FormValue("g-recaptcha-response")), &grec)
-	println(grec.Success)
+	fmt.Println([]byte(r.FormValue("g-recaptcha-response")))
 
-	_, err = database.Exec("INSERT INTO `contact_submissions`(`lastname`, `firstname`, `email`, `message`, `recaptcha_success`) VALUES (?, ?, ?, ?, ?)",
+	/*_, err = database.Exec("INSERT INTO `contact_submissions`(`lastname`, `firstname`, `email`, `message`, `recaptcha_success`) VALUES (?, ?, ?, ?, ?)",
 		lastname, firstname, email, msg, grec.Success)
 	if err != nil {
 		http.Redirect(w, r, "/contact/submit_error.html", http.StatusSeeOther)
 		log.Print(err)
 		return
-	}
+	}*/
 
 	http.Redirect(w, r, "/contact/submit_success.html", http.StatusSeeOther)
 }
