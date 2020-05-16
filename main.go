@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"personal_website/githubapi"
 	"personal_website/properties"
 	"strings"
@@ -25,6 +26,7 @@ var database *sql.DB
 var data = githubapi.GetLatestGithubRepos(properties.GithubListUser, properties.NumGithubCards)
 
 func main() {
+	properties.Load(os.Args[1])
 
 	if properties.UseDatabase {
 		database, err = sql.Open("mysql", properties.SQLLogin)

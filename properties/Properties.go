@@ -5,8 +5,6 @@ import (
 )
 
 var (
-	path = "C:/Users/Lennart/Desktop/sandbothe_dev.properties"
-
 	Port = "8080"
 
 	UseSSL   = true
@@ -21,7 +19,7 @@ var (
 	NumGithubCards = 4
 )
 
-func init() {
+func Load(path string) {
 	p := properties.MustLoadFile(path, properties.UTF8)
 
 	Port = p.GetString("port", Port)
