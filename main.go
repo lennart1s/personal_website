@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"database/sql"
 	"encoding/json"
 	"fmt"
@@ -19,6 +20,7 @@ import (
 var router *mux.Router
 var database *sql.DB
 var sqlLogin = ""
+var grecSecret = ""
 
 var data = githubapi.GetLatestGithubRepos("lennart1s", 4)
 
@@ -76,8 +78,18 @@ func submitRequest(w http.ResponseWriter, r *http.Request) {
 	//lastname := r.FormValue("lastname")
 	//email := r.FormValue("email")
 	//msg := r.FormValue("message")
-	var grec GrecResponse
-	json.Unmarshal([]byte(r.FormValue("g-recaptcha-response")), &grec)
+	userGrecToken := r.FormValue("g-recaptcha-response")
+	req, err := json.Marshal(map[string]string{
+		"secret":   grecSecret,
+		"response": userGrecToken,
+	})
+	check(err)
+	resp, err := http.Post("https://www.google.com/recaptcha/api/siteverify", "application/json", bytes.NewBuffer(req))
+	//var grec GrecResponse
+	fmt.Println(ioutil.ReadAll(resp.Body))
+
+	//var grec GrecResponse
+	//json.Unmarshal([]byte(r.FormValue("g-recaptcha-response")), &grec)
 	fmt.Println([]byte(r.FormValue("g-recaptcha-response")))
 
 	/*_, err = database.Exec("INSERT INTO `contact_submissions`(`lastname`, `firstname`, `email`, `message`, `recaptcha_success`) VALUES (?, ?, ?, ?, ?)",
