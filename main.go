@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"database/sql"
 	"encoding/json"
 	"fmt"
@@ -10,24 +9,27 @@ import (
 	"log"
 	"net/http"
 	"personal_website/githubapi"
+	"personal_website/properties"
 	"strings"
+	"time"
 
 	"github.com/gorilla/mux"
 
 	_ "github.com/go-sql-driver/mysql"
 )
 
+var err error
 var router *mux.Router
 var database *sql.DB
-var sqlLogin = ""
-var grecSecret = ""
 
-var data = githubapi.GetLatestGithubRepos("lennart1s", 4)
+var data = githubapi.GetLatestGithubRepos(properties.GithubListUser, properties.NumGithubCards)
 
 func main() {
-	var err error
-	//database, err = sql.Open("mysql", sqlLogin)
-	check(err)
+
+	if properties.UseDatabase {
+		database, err = sql.Open("mysql", properties.SQLLogin)
+		check(err)
+	}
 
 	router = mux.NewRouter()
 
@@ -42,8 +44,11 @@ func main() {
 	router.PathPrefix("/res/").Handler(http.FileServer(http.Dir("./")))
 
 	http.Handle("/", router)
-	//err = http.ListenAndServe(":8080", nil)
-	err = http.ListenAndServeTLS(":8004", "/etc/ssl/certs/sandbothe.dev.cer", "/etc/ssl/private/sandbothe.dev.key", nil)
+	if !properties.UseSSL {
+		err = http.ListenAndServe(properties.Port, nil)
+	} else {
+		err = http.ListenAndServeTLS(properties.Port, properties.CertPath, properties.KeyPath, nil)
+	}
 	check(err)
 }
 
@@ -74,27 +79,34 @@ func submitRequest(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//firstname := r.FormValue("firstname")
-	//lastname := r.FormValue("lastname")
-	//email := r.FormValue("email")
-	//msg := r.FormValue("message")
+	firstname := r.FormValue("firstname")
+	lastname := r.FormValue("lastname")
+	email := r.FormValue("email")
+	msg := r.FormValue("message")
 	userGrecToken := r.FormValue("g-recaptcha-response")
-	req, err := json.Marshal(map[string]string{
-		"secret":   grecSecret,
-		"response": userGrecToken,
-	})
-	check(err)
-	resp, err := http.Post("https://www.google.com/recaptcha/api/siteverify", "application/json", bytes.NewBuffer(req))
-	//var grec GrecResponse
-	fmt.Println(ioutil.ReadAll(resp.Body))
 
-	//var grec GrecResponse
-	//json.Unmarshal([]byte(r.FormValue("g-recaptcha-response")), &grec)
-	fmt.Println([]byte(r.FormValue("g-recaptcha-response")))
+	var grecResp grecResponse
+	grecResp.GetResp(userGrecToken)
 
-	/*_, err = database.Exec("INSERT INTO `contact_submissions`(`lastname`, `firstname`, `email`, `message`, `recaptcha_success`) VALUES (?, ?, ?, ?, ?)",
-		lastname, firstname, email, msg, grec.Success)
-	if err != nil {
+	if grecResp.Success {
+
+		if properties.UseDatabase {
+			sqlQuery := "INSERT INTO `contact_submissions`(`lastname`, `firstname`, `email`, `message`, `recaptcha_success`) VALUES (?, ?, ?, ?, ?)"
+			_, err = database.Exec(sqlQuery, lastname, firstname, email, msg, grecResp.Success)
+			check(err) // TODO: stable error handling, send user to /contact/submit_error.html (optionally: error codes)
+		} else { // TODO: Logging
+			fmt.Println("\n----------------------------------------")
+			fmt.Println("Contact Submission: (" + time.Now().String() + ")")
+			fmt.Println(lastname + ", " + firstname)
+			fmt.Println(email)
+			fmt.Println(msg)
+		}
+
+	} else {
+		fmt.Println("Invalid Contact submission (recaptcha) - " + time.Now().String())
+	}
+
+	/*if err != nil {
 		http.Redirect(w, r, "/contact/submit_error.html", http.StatusSeeOther)
 		log.Print(err)
 		return
@@ -147,6 +159,15 @@ func check(err error) {
 	}
 }
 
-type GrecResponse struct {
+type grecResponse struct {
 	Success bool `json:"success"`
+}
+
+func (g *grecResponse) GetResp(userGrecToken string) (err error) {
+	apiPrefix := "https://www.google.com/recaptcha/api/siteverify?secret="
+	grecRespData, err := http.Post(apiPrefix+properties.GrecSecret+"&response="+userGrecToken, "application/x-www-form-urlencoded", nil)
+	b, err := ioutil.ReadAll(grecRespData.Body)
+	json.Unmarshal(b, &g)
+
+	return err
 }
