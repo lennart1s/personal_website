@@ -47,7 +47,7 @@ func main() {
 	if !properties.UseSSL {
 		err = http.ListenAndServe(properties.Port, nil)
 	} else {
-		err = http.ListenAndServeTLS(properties.Port, properties.CertPath, properties.KeyPath, nil)
+		err = http.ListenAndServeTLS(":"+properties.Port, properties.CertPath, properties.KeyPath, nil)
 	}
 	check(err)
 }
