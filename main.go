@@ -19,13 +19,13 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var err error
 var router *mux.Router
 var database *sql.DB
 
 var data = githubapi.GetLatestGithubRepos(properties.GithubListUser, properties.NumGithubCards)
 
 func main() {
+	var err error
 	properties.Load(os.Args[1])
 
 	if properties.UseDatabase {
@@ -47,7 +47,7 @@ func main() {
 
 	http.Handle("/", router)
 	if !properties.UseSSL {
-		err = http.ListenAndServe(properties.Port, nil)
+		err = http.ListenAndServe(":"+properties.Port, nil)
 	} else {
 		err = http.ListenAndServeTLS(":"+properties.Port, properties.CertPath, properties.KeyPath, nil)
 	}
