@@ -1,7 +1,11 @@
 {
-  "name": "turborepo-basic-pnpm",
+  "name": "turborepo-basic-shared",
   "version": "0.0.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
@@ -30,5 +34,9 @@
         "cache": false
       }
     }
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
   }
 }
