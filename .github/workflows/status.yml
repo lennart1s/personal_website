@@ -10,7 +10,7 @@ jobs:
     - name: Check http status code of production site
       uses: cygnetdigital/wait_for_response@v2.0.0
       with:
-        url: 'https://sandbothe.dev'
+        url: 'https://vis.sandbothe.dev'
         responseCode: '200'
         timeout: 2000
         interval: 500
