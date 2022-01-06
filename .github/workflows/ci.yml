@@ -23,8 +23,7 @@ jobs:
 
       - name: Prepare
         run: |
-          npm install turbo -D
-          npm install
+          npm ci
       
       - name: Build
         run: turbo run build
