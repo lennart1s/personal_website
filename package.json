@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "install": "turbo run install",
+    "myinstall": "turbo run myinstall",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
@@ -34,7 +34,7 @@
       "dev": {
         "cache": false
       },
-      "install": {}
+      "myinstall": {}
     }
   },
   "engines": {
