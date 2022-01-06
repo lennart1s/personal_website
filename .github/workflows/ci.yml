@@ -29,6 +29,7 @@ jobs:
           npm install
           npm install pnpm -g
           npm install turbo-cli -g
+          npm i fsevents@latest -f --save-optional
           yarn turbo run install
       
       - name: Build
