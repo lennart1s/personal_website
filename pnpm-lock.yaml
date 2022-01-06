@@ -2963,7 +2963,7 @@ packages:
       readdirp: 2.2.1
       upath: 1.2.0
     optionalDependencies:
-      fsevents: 1.2.13
+      fsevents: 2.3.2
     dev: true
 
   /chokidar/3.5.1:
