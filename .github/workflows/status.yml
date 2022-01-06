@@ -10,5 +10,5 @@ jobs:
     - name: Check http status code of production site
       uses: lakuapik/gh-actions-http-status@v1
       with:
-        sites: '["https://sandbothe.dev"]'
+        sites: '["https://vis.sandbothe.dev"]'
         expected: '[200]'
