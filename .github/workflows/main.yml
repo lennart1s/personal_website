@@ -32,5 +32,9 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
+          npm i
           npm install turbo -D
+      
+      - name: Actual build
+        run: |
           turbo run build
