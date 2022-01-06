@@ -8,7 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check http status code of production site
-      uses: lakuapik/gh-actions-http-status@v1
+      uses: cygnetdigital/wait_for_response@v2.0.0
       with:
-        sites: '["https://vis.sandbothe.dev"]'
-        expected: '[200]'
+        url: 'https://sandbothe.dev'
+        responseCode: '200'
+        timeout: 2000
+        interval: 500
