@@ -4,13 +4,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  Check:
+  custom_test:
     runs-on: ubuntu-latest
+    name: Test the website response status
     steps:
-    - name: Check http status code of production site
-      uses: cygnetdigital/wait_for_response@v2.0.0
-      with:
-        url: 'https://vis.sandbothe.dev'
-        responseCode: '200'
-        timeout: 2000
-        interval: 500
+      - name: Get responses
+        uses: lennart1s/http-checker@v1
+        id: tester
+        with:
+          urls: "[\"https://sandbothe.dev\", \"https://vis.sandbothe.dev\", \"https://tictactoe.sandbothe.dev/\"]"
+          codes: "[200, 301]"
+      - name: Print results
+        run: echo "${{ steps.tester.outputs.responses }}"
