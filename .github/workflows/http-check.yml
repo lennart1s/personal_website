@@ -1,0 +1,18 @@
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Check sandbothe.dev
+    steps:
+      - name: Get responses
+        uses: lennart1s/http-checker@v1
+        id: tester
+        with:
+          urls: "[\"https://sandbothe.dev\"]"
+          codes: "[200]"
+      - name: Print results
+        run: echo "Results ${{ steps.tester.outputs.responses }}"
