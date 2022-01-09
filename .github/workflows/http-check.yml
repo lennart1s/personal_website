@@ -1,3 +1,5 @@
+name: http-check
+
 on:
   schedule:
     - cron: "*/30 * * * *"
