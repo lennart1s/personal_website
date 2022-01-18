@@ -26,16 +26,14 @@ export default class App extends Vue {}
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+html::-webkit-scrollbar {
+  display: none;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
