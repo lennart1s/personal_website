@@ -1,21 +1,12 @@
 <template>
   <div id="app">
-    <GlobalNavigation />
-    <router-view />
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
   </div>
 </template>
-
-<script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import GlobalNavigation from "@/components/GlobalNavigation.vue";
-
-@Component({
-  components: {
-    GlobalNavigation,
-  },
-})
-export default class App extends Vue {}
-</script>
 
 <style lang="scss">
 #app {
@@ -26,14 +17,16 @@ export default class App extends Vue {}
   color: #2c3e50;
 }
 
-html::-webkit-scrollbar {
-  display: none;
-}
+#nav {
+  padding: 30px;
 
-html {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  scroll-behavior: smooth;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
 
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }
 </style>
