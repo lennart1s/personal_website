@@ -1,0 +1,109 @@
+{
+    "event": {
+        "transaction": {
+            "acr_values": [],
+            "id": "Ww9hgfoD5_-Pu-Gt7raA7sdzzmbIZDhb",
+            "locale": "en",
+            "login_hint": null,
+            "prompt": [],
+            "protocol": "oidc-basic-profile",
+            "redirect_uri": "http://localhost:8080",
+            "requested_scopes": [
+                "openid",
+                "profile",
+                "email"
+            ],
+            "response_mode": "query",
+            "response_type": [
+                "code"
+            ],
+            "state": "U1NHMV92OXBweGF4T2psTUZiNmExMTB0MG5lMC5TZmdyb3dvSHYyZGFFcQ==",
+            "ui_locales": []
+        },
+        "authentication": {
+            "methods": [
+                {
+                    "name": "pwd",
+                    "timestamp": "2022-04-27T16:15:48.431Z"
+                }
+            ]
+        },
+        "authorization": {
+            "roles": []
+        },
+        "connection": {
+            "id": "con_Ad1LCeXT5T6ZqNF1",
+            "metadata": {},
+            "name": "Username-Password-Authentication",
+            "strategy": "auth0"
+        },
+        "resource_server": {
+            "identifier": "https://sandbothe-dev.eu.auth0.com/userinfo"
+        },
+        "tenant": {
+            "id": "sandbothe-dev"
+        },
+        "secrets": {},
+        "configuration": {},
+        "client": {
+            "client_id": "S7FcgoUvto1cK8sFqtAkyUHXUMdPmZsp",
+            "name": "homepage@sandbothe.dev",
+            "metadata": {}
+        },
+        "request": {
+            "ip": "2a02:908:1085:da40:9438:655:ca78:840f",
+            "method": "GET",
+            "query": {
+                "auth0Client": "eyJuYW1lIjoiYXV0aDAtc3BhLWpzIiwidmVyc2lvbiI6IjEuMjEuMCJ9",
+                "client_id": "S7FcgoUvto1cK8sFqtAkyUHXUMdPmZsp",
+                "code_challenge": "UwY0XkrZeuYkA3Bdxu5cwkoal0_q_RXsB1PerveKbz0",
+                "code_challenge_method": "S256",
+                "nonce": "MFZoUU5KbnlpN0hVWlZLQ05zR35xUkgzOHRyTTdWWWFWUlJnNkJpR2V5QQ==",
+                "protocol": "oauth2",
+                "redirect_uri": "http://localhost:8080",
+                "response_mode": "query",
+                "response_type": "code",
+                "scope": "openid profile email",
+                "state": "U1NHMV92OXBweGF4T2psTUZiNmExMTB0MG5lMC5TZmdyb3dvSHYyZGFFcQ=="
+            },
+            "body": {},
+            "geoip": {
+                "cityName": "Aachen",
+                "continentCode": "EU",
+                "countryCode3": "DEU",
+                "countryCode": "DE",
+                "countryName": "Germany",
+                "latitude": 50.7599,
+                "longitude": 6.0953,
+                "timeZone": "Europe/Berlin"
+            },
+            "hostname": "sandbothe-dev.eu.auth0.com",
+            "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36"
+        },
+        "stats": {
+            "logins_count": 2
+        },
+        "user": {
+            "app_metadata": {},
+            "created_at": "2022-04-27T16:15:20.982Z",
+            "email_verified": false,
+            "email": "example.user@sandbothe.dev",
+            "identities": [
+                {
+                    "connection": "Username-Password-Authentication",
+                    "isSocial": false,
+                    "provider": "auth0",
+                    "userId": "62696c18ba51cc006fc0d55c",
+                    "user_id": "62696c18ba51cc006fc0d55c"
+                }
+            ],
+            "name": "example.user@sandbothe.dev",
+            "nickname": "example.user",
+            "picture": "https://s.gravatar.com/avatar/ac93239405f7d6784f2d047d61c05ddd?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fex.png",
+            "updated_at": "2022-04-27T16:15:48.425Z",
+            "user_id": "auth0|62696c18ba51cc006fc0d55c",
+            "user_metadata": {},
+            "multifactor": []
+        }
+    }
+}
